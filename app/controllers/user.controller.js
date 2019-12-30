@@ -2,9 +2,9 @@ const userModel = require('../models/user.model.js');
 const bcrypt = require('bcrypt'); 
 const jwt = require('jsonwebtoken');
 module.exports = {
- create: function(req, res, next) {
+ create: async function(req, res, next) {
   
-      userModel.create({ name: req.body.name, email: req.body.email, password: req.body.password }, function (err, result) {
+      await userModel.create({ name: req.body.name, email: req.body.email, password: req.body.password }, function (err, result) {
          console.log('create method!');
          if (err) {
             console.log('ERROR CREATE:'+ error);
@@ -15,8 +15,8 @@ module.exports = {
          }
       });
  },
-authenticate: function(req, res, next) {
-  userModel.findOne({email:req.body.email}, function(err, userInfo){
+authenticate: async function(req, res, next) {
+   await userModel.findOne({email:req.body.email}, function(err, userInfo){
      if (err) {
       next(err);
      } else {
