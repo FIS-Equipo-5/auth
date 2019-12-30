@@ -1,5 +1,6 @@
 
-FROM node:9-alpine
+#FROM node:9-alpine
+FROM node:10
 
 #Establecer directorio de trabajo
 WORKDIR /app
