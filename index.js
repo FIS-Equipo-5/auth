@@ -3,19 +3,21 @@ const dbConnect = require('./db');
 const dbConfig = require('./config/database.config.js');
 
 
-console.log("Starting API server at "+dbConfig.port);
+console.log("Starting API server at " + dbConfig.port);
 
 dbConnect().then(
-    async () => {
-        app.listen(dbConfig.port);
-        console.log("Server is listening on " + dbConfig.url +' '+ dbConfig.port);
-        const User = require('./app/models/user.model');
-        console.log("Saving User");
-        user = new User({ name: 'user', email: 'user@email.com', password: 'password' });
-        // let response = await user.save()
-        // console.log("Added user " + response);
+    () => {
+        console.log("BD is located in " + dbConfig.url + ' ' + dbConfig.port);
+        app.listen(dbConfig.port, async () => {
+            console.log("Saving User");
+            const User = require('./app/models/user.model');
+            user = new User({ name: 'user', email: 'user@email.com', password: 'password' });
+            let response = await user.save()
+            console.log("Added user " + response);
+        });
+        console.log("Server is listening on " + dbConfig.port);
     },
     err => {
-        console.log("Connection error: "+err);
+        console.log("Connection error: " + err);
     }
 )
