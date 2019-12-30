@@ -9,7 +9,9 @@ const dbConnect = function() {
     db.on('error', console.error.bind(console, 'connection error: '));
     // Connecting to the database
     return mongoose.connect(dbConfig.url, {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true
     }).then(() => {
         console.log("Successfully connected to the database");    
     }).catch(err => {
