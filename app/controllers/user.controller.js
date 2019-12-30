@@ -4,8 +4,12 @@ const jwt = require('jsonwebtoken');
 
 module.exports.create = async function (request, response) {
    let user = new User({ name: request.body.name, email: request.body.email, password: request.body.password});
+   console.log("user by params :", user);
    try {
+      console.log("request: ", request);
+      console.log("response: ", response);
       let res = await user.save()
+      console.log(res);
       response.status(201);
       response.json(res);
   } catch (error) {
