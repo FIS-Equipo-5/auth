@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 //controls the time needed to hash the password
 const saltRounds = 10;
@@ -25,7 +25,7 @@ const UserSchema = new Schema({
 });
 // hash user password before saving into database
 UserSchema.pre('save', function(next){
-this.password = bcrypt.hashSync(this.password, saltRounds);
+// this.password = bcrypt.hashSync(this.password, saltRounds);
 next();
 });
 module.exports = mongoose.model('User', UserSchema);

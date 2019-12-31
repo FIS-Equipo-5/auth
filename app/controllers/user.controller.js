@@ -1,5 +1,5 @@
 const User = require('../models/user.model');
-const bcrypt = require('bcrypt'); 
+// const bcrypt = require('bcrypt'); 
 const jwt = require('jsonwebtoken');
 
 module.exports.create = async function (request, response) {
@@ -29,7 +29,8 @@ module.exports.create = async function (request, response) {
 module.exports.authenticate = async function (request, response) {
    try {
       let user = await User.findOne({ email: request.body.email });
-      if (user && bcrypt.compareSync(request.body.password, user.password)) {
+      if (user) {
+      // if (user && bcrypt.compareSync(request.body.password, user.password)) {
          const token = jwt.sign({ id: user._id }, request.app.get('secretKey'), { expiresIn: '1h' });
          response.json({ status: "success", message: "user found!!!", data: { user: user, token: token } });
       } else {

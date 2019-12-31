@@ -10,7 +10,7 @@ var jwt = require('jsonwebtoken');
 const app = express();
 
 // jwt secret token
-app.set('secretKey', 'authServiceApi'); 
+app.set('secretKey', 'authServiceApi');
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -31,11 +31,11 @@ dbConnect().then(
         console.log("BD is located in " + dbConfig.url + ' ' + dbConfig.port);
         app.listen(dbConfig.port, async () => {
             console.log("Saving User");
-             const User = require('./app/models/user.model');
-             user = new User({ name: 'user', email: 'user@email.com', password: 'password' });
+            const User = require('./app/models/user.model');
+            user = new User({ name: 'user', email: 'user@email.com', password: 'password' });
             console.log("User const: ", user);
-            //let response = await user.save()
-            //console.log("Added user " + response);
+            let response = await user.save()
+            console.log("Added user " + response);
         });
         console.log("Server is listening on " + dbConfig.port);
     },

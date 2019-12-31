@@ -1,4 +1,4 @@
-FROM node:8.11.4
+FROM node:9
 
 #Establecer directorio de trabajo
 WORKDIR /app
