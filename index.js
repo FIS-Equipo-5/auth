@@ -4,10 +4,14 @@ const dbConfig = require('./config/database.config.js');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 var jwt = require('jsonwebtoken');
 
 // create express app
 const app = express();
+
+//set cors to be used by third parties
+app.use(cors());
 
 // jwt secret token
 app.set('secretKey', 'authServiceApi');
